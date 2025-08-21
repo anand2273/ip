@@ -1,8 +1,12 @@
 import java.util.Scanner;
+import tasks.Task;
+import tasks.TaskList;
 
 public class Dennis {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        TaskList taskList = new TaskList();
+
         String logo = "██████╗ ███████╗███╗   ██╗███╗   ██╗██╗███████╗\n"
                     + "██╔══██╗██╔════╝████╗  ██║████╗  ██║██║██╔════╝\n"
                     + "██║  ██║█████╗  ██╔██╗ ██║██╔██╗ ██║██║███████╗\n"
@@ -20,8 +24,12 @@ public class Dennis {
             if (input.equals("bye")) {
                 System.out.println(indentation + "Catch you later!\n" + indentation);
                 break;
+            } else if (input.equals("list")) {
+                System.out.println((taskList.toString()));
             } else {
-                System.out.println(indentation + input + "\n" + indentation);
+                Task newTask = new Task(input);
+                String output = taskList.add(newTask);
+                System.out.println(indentation + output + "\n" + indentation);
             }
         }
         sc.close();
