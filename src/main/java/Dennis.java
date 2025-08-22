@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import tasks.Task;
 import tasks.TaskList;
+import tasks.TodoTask;
+import ui.Ui;
 
 public class Dennis {
     public static void main(String[] args) {
@@ -13,20 +15,18 @@ public class Dennis {
                     + "██║  ██║██╔══╝  ██║╚██╗██║██║╚██╗██║██║╚════██║\n"
                     + "██████╔╝███████╗██║ ╚████║██║ ╚████║██║███████║\n"
                     + "╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚═╝╚══════╝\n";
-        String indentation = "_______________________________________\n";
-        String message = (indentation
-                + "this is DENNIS. What can I do for you?\n"
-                + indentation);
-        System.out.println(logo + message);
+        String message = "this is DENNIS. What can I do for you?";
+
+        System.out.println(logo + Ui.wrapText(message));
 
         while (true) {
             String line = sc.nextLine();
-            String[] parts = line.split("\\s+");
+            String[] parts = line.split("\\s+", 2);
             String cmd = parts[0].toLowerCase();
             int idx;
             switch (cmd) {
                 case "bye":
-                    System.out.println(indentation + "Catch you later!\n" + indentation);
+                    System.out.println(Ui.wrapText("Catch ya later!"));
                     sc.close();
                     return;
                 case "list":
@@ -40,10 +40,16 @@ public class Dennis {
                     idx = Integer.parseInt(parts[1]) - 1;
                     System.out.println(taskList.get(idx).markUndone());
                     break;
+                case "todo":
+                    String taskName = parts[1];
+                    TodoTask todoTask = new TodoTask(taskName);
+                    String todoMsg = taskList.add(todoTask);
+                    System.out.println(Ui.wrapText(todoMsg));
+                    break;
                 default:
-                    Task newTask = new Task(cmd);
-                    String output = taskList.add(newTask);
-                    System.out.println(indentation + output + "\n" + indentation);
+                    Task task = new Task(cmd);
+                    String output = taskList.add(task);
+                    System.out.println(Ui.wrapText(output));
                     break;
             }
         }

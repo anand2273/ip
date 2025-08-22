@@ -12,10 +12,10 @@ public class Task {
 
     public String markDone() {
         String msg;
-        if (this.isDone) {
+        if (isDone) {
             msg = "task is already marked as done\n" + this.toString();
         } else {
-            this.isDone = true;
+            isDone = true;
             msg = "task is marked as done\n" + this.toString();
         }
         return Ui.wrapText(msg);
@@ -23,10 +23,10 @@ public class Task {
 
     public String markUndone() {
         String msg;
-        if (!this.isDone) {
+        if (!isDone) {
             msg = "task is already marked as undone\n" + this.toString();
         } else {
-            this.isDone = false;
+            isDone = false;
             msg = "task is marked as undone\n" + this.toString();
         }
         return Ui.wrapText(msg);
@@ -34,7 +34,7 @@ public class Task {
 
     public String toString() {
         String doneMark = "[] ";
-        if (this.isDone) {
+        if (isDone) {
             doneMark = "[X] ";
         }
         return doneMark + this.taskName;

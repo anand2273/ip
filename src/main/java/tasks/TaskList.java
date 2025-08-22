@@ -1,7 +1,7 @@
 package tasks;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
-import static ui.Ui.INDENTATION;
+import ui.Ui;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
@@ -21,16 +21,16 @@ public class TaskList {
     @Override
     public String toString() {
         if (tasks.isEmpty()) {
-            return INDENTATION + "no tasks yet. get to work\n" + INDENTATION;
+            return Ui.wrapText("no tasks yet. get to work");
         }
-        StringBuilder sb = new StringBuilder(INDENTATION + "Your Tasks:\n");
+        StringBuilder sb = new StringBuilder("Your Tasks:");
         for (int i = 0; i < tasks.size(); i++) {
-            sb.append(i + 1)
+            sb.append("\n")
+                    .append(i + 1)
                     .append(". ")
-                    .append(tasks.get(i).toString())
-                    .append("\n");
+                    .append(tasks.get(i).toString());
         }
-        return sb.append(INDENTATION).toString();
+        return Ui.wrapText(sb.toString());
     }
 }
 
