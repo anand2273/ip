@@ -18,7 +18,7 @@ public class Task {
             isDone = true;
             msg = "task is marked as done\n" + this.toString();
         }
-        return Ui.wrapText(msg);
+        return msg;
     }
 
     public String markUndone() {
@@ -29,7 +29,7 @@ public class Task {
             isDone = false;
             msg = "task is marked as undone\n" + this.toString();
         }
-        return Ui.wrapText(msg);
+        return msg;
     }
 
     public String toString() {

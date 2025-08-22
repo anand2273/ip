@@ -21,7 +21,7 @@ public class TaskList {
     @Override
     public String toString() {
         if (tasks.isEmpty()) {
-            return Ui.wrapText("no tasks yet. get to work");
+            return "no tasks yet. get to work";
         }
         StringBuilder sb = new StringBuilder("Your Tasks:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -30,7 +30,7 @@ public class TaskList {
                     .append(". ")
                     .append(tasks.get(i).toString());
         }
-        return Ui.wrapText(sb.toString());
+        return sb.toString();
     }
 }
 

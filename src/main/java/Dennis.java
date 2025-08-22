@@ -1,9 +1,6 @@
 import java.util.Scanner;
 
-import tasks.DeadlineTask;
-import tasks.Task;
-import tasks.TaskList;
-import tasks.TodoTask;
+import tasks.*;
 import ui.Ui;
 
 public class Dennis {
@@ -32,15 +29,15 @@ public class Dennis {
                     sc.close();
                     return;
                 case "list":
-                    System.out.println((taskList.toString()));
+                    System.out.println((Ui.wrapText(taskList.toString())));
                     break;
                 case "mark":
                     idx = Integer.parseInt(parts[1]) - 1;
-                    System.out.println(taskList.get(idx).markDone());
+                    System.out.println(Ui.wrapText(taskList.get(idx).markDone()));
                     break;
                 case "unmark":
                     idx = Integer.parseInt(parts[1]) - 1;
-                    System.out.println(taskList.get(idx).markUndone());
+                    System.out.println(Ui.wrapText(taskList.get(idx).markUndone()));
                     break;
                 case "todo":
                     String taskName = parts[1];
@@ -55,6 +52,11 @@ public class Dennis {
                     System.out.println(Ui.wrapText(deadlineMsg));
                     break;
                 case "event":
+                    String[] rest = parts[1].split("/from");
+                    String[] timeline = rest[1].split("/to");
+                    EventTask eventTask = new EventTask(rest[0].trim(), timeline[0].trim(), timeline[1].trim());
+                    String eventMsg = taskList.add(eventTask);
+                    System.out.println(Ui.wrapText(eventMsg));
                     break;
                 default:
                     Task task = new Task(cmd);
