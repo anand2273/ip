@@ -8,12 +8,6 @@ public class TodoTask extends Task {
 
     @Override
     public String toString() {
-        String tag = "[T][] ";
-        if (isDone) {
-            tag = "[T][X] ";
-        }
-        return tag + taskName;
+        return "[T]" + super.toString();
     }
-
-
 }

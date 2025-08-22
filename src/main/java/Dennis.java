@@ -1,4 +1,6 @@
 import java.util.Scanner;
+
+import tasks.DeadlineTask;
 import tasks.Task;
 import tasks.TaskList;
 import tasks.TodoTask;
@@ -45,6 +47,14 @@ public class Dennis {
                     TodoTask todoTask = new TodoTask(taskName);
                     String todoMsg = taskList.add(todoTask);
                     System.out.println(Ui.wrapText(todoMsg));
+                    break;
+                case "deadline":
+                    String[] remainder = parts[1].split("/by");
+                    DeadlineTask deadlineTask = new DeadlineTask(remainder[0].trim(), remainder[1].trim());
+                    String deadlineMsg = taskList.add(deadlineTask);
+                    System.out.println(Ui.wrapText(deadlineMsg));
+                    break;
+                case "event":
                     break;
                 default:
                     Task task = new Task(cmd);
