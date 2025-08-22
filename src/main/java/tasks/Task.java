@@ -1,9 +1,9 @@
 package tasks;
+import ui.Ui;
 
 public class Task {
-    private final String taskName;
-    private boolean isDone;
-    private final String INDENTATION = "_______________________________________\n";
+    protected final String taskName;
+    protected boolean isDone;
 
     public Task(String taskName) {
         this.taskName = taskName;
@@ -11,19 +11,25 @@ public class Task {
     }
 
     public String markDone() {
+        String msg;
         if (this.isDone) {
-            return INDENTATION + "task is already marked as done\n" + this.toString() + "\n" + INDENTATION;
+            msg = "task is already marked as done\n" + this.toString();
+        } else {
+            this.isDone = true;
+            msg = "task is marked as done\n" + this.toString();
         }
-        this.isDone = true;
-        return INDENTATION + "task is marked as done!\n" + this.toString() + "\n" + INDENTATION;
+        return Ui.wrapText(msg);
     }
 
     public String markUndone() {
+        String msg;
         if (!this.isDone) {
-            return INDENTATION + "task is already marked as undone\n" + this.toString() + "\n" + INDENTATION;
+            msg = "task is already marked as undone\n" + this.toString();
+        } else {
+            this.isDone = false;
+            msg = "task is marked as undone\n" + this.toString();
         }
-        this.isDone = false;
-        return INDENTATION + "task is marked as undone.\n" + this.toString() + "\n" + INDENTATION;
+        return Ui.wrapText(msg);
     }
 
     public String toString() {

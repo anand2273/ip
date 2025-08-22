@@ -1,10 +1,10 @@
 package tasks;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
+import static ui.Ui.INDENTATION;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
-    private final String INDENTATION = "_______________________________________\n";
 
     public TaskList() {
         this.tasks = new ArrayList<Task>();
