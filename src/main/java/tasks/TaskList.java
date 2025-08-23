@@ -18,6 +18,13 @@ public class TaskList {
         return "added: " + task.toString();
     }
 
+    public String delete(int idx) {
+        Task task = tasks.get(idx);
+        tasks.remove(idx);
+        int size = tasks.size();
+        return "Noted. Removed this task\n" + task + "\n" + String.format("There are %d tasks left", size);
+    }
+
     @Override
     public String toString() {
         if (tasks.isEmpty()) {

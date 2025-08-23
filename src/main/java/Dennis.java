@@ -78,6 +78,11 @@ public class Dennis {
                         System.out.println("Invalid input. Please follow the prescribed format.");
                     }
                     break;
+                case "delete":
+                    int pos = Integer.parseInt(parts[1]) - 1;
+                    String deleteMsg = taskList.delete(pos);
+                    System.out.println(Ui.wrapText(deleteMsg));
+                    break;
                 default:
                     Task task = new Task(cmd);
                     String output = taskList.add(task);
