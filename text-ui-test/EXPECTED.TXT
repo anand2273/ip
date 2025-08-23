@@ -50,6 +50,19 @@ task is already marked as undone
 _______________________________________
 
 _______________________________________
+That task number does not exist. Please use the list command for task numbers.
+_______________________________________
+
+_______________________________________
+Please specify a numerical value for the task number in the following format: 'mark 1'
+_______________________________________
+
+_______________________________________
+task is marked as done
+[D][X] do homework (by: tonight)
+_______________________________________
+
+_______________________________________
 Catch ya later!
 _______________________________________
 

@@ -7,4 +7,7 @@ mark 2
 mark 2
 unmark 2
 unmark 2
+mark -1
+mark one
+mark 3
 bye
