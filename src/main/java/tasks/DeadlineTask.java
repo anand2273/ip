@@ -11,7 +11,7 @@ public class DeadlineTask extends Task {
     @Override
     public String toStorage() {
         String doneMark = isDone ? "1" : "0";
-        return "T | " + doneMark + " | " + taskName + " | by " + by;
+        return "T | " + doneMark + " | " + taskName + " | " + by;
     }
 
     @Override
