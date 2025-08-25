@@ -84,7 +84,7 @@ public class Dennis {
                     System.out.println(Ui.wrapText(deleteMsg));
                     break;
                 default:
-                    Task task = new Task(cmd);
+                    Task task = new Task(line);
                     String output = taskList.add(task);
                     System.out.println(Ui.wrapText(output));
                     break;

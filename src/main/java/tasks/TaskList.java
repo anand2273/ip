@@ -40,15 +40,3 @@ public class TaskList {
         return sb.toString();
     }
 }
-
-//    public static void main(String[] args) {
-//        TaskList tasks = new TaskList();
-//        Task task1 = new Task("Eat");
-//        Task task2 = new Task("clean");
-//        tasks.add(task1);
-//        tasks.add(task2);
-//
-//        System.out.println(tasks.toString());
-//    }
-//
-//}
