@@ -10,6 +10,11 @@ public class EventTask extends Task {
         this.to = to;
     }
 
+    public String toStorage() {
+        String doneMark = isDone ? "1" : "0";
+        return "E | " + doneMark + " " + taskName + " | from " + from + " | to " + to;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";

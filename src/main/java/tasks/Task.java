@@ -32,6 +32,11 @@ public class Task {
         return msg;
     }
 
+    public String toStorage() {
+        String doneMark = isDone ? "1" : "0";
+        return "N | " + isDone + " " + taskName;
+    }
+
     public String toString() {
         String doneMark = "[] ";
         if (isDone) {
