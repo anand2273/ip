@@ -26,8 +26,24 @@ public class Storage {
         fw.close();
     }
 
-    public void load() {
-        return; // implement this later
+    public TaskList load() {
+        File f = new File(filePath);
+        ArrayList<Task> loadedTasks = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(f);
+            while (sc.hasNextLine()) {
+                String storedTask = sc.nextLine();
+                Task parsedTask = parseTask(storedTask);
+                loadedTasks.add(parsedTask);
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            f.mkdirs();
+            return new TaskList();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error loading task. Please try again.");
+        }
+        return new TaskList(loadedTasks);
     }
 
     private Task parseTask(String storedTask) {
