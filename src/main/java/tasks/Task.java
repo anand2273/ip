@@ -34,7 +34,7 @@ public class Task {
 
     public String toStorage() {
         String doneMark = isDone ? "1" : "0";
-        return "N | " + isDone + " " + taskName;
+        return "N | " + doneMark + " | " + taskName;
     }
 
     public String toString() {

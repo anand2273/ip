@@ -14,6 +14,6 @@ public class TodoTask extends Task {
     @Override
     public String toStorage() {
         String doneMark = isDone ? "1" : "0";
-        return "T | " + doneMark + " " + taskName;
+        return "T | " + doneMark + " | " + taskName;
     }
 }

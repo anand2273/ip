@@ -12,7 +12,7 @@ public class EventTask extends Task {
 
     public String toStorage() {
         String doneMark = isDone ? "1" : "0";
-        return "E | " + doneMark + " " + taskName + " | from " + from + " | to " + to;
+        return "E | " + doneMark + " | " + taskName + " | from " + from + " | to " + to;
     }
 
     @Override
