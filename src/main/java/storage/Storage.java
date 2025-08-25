@@ -1,16 +1,14 @@
 package storage;
-import java.lang.reflect.Array;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import tasks.DeadlineTask;
-import tasks.TaskList;
-import tasks.Task;
-import tasks.TodoTask;
+import tasks.*;
 
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
