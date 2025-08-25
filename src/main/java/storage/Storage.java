@@ -30,8 +30,25 @@ public class Storage {
         return; // implement this later
     }
 
-    private ArrayList<Task> parseTask(String storedTasks) {
-        return null; // implement this later
+    private Task parseTask(String storedTask) {
+        String[] parts = storedTask.split(" \\| ");
+        String type = parts[0].trim();
+        boolean isDone = parts[1].trim().equals("1");
+        System.out.println(parts[1].trim());
+        System.out.println(parts[2]);
+        String taskName = parts[2].trim();
+        switch (type) {
+            case "T":
+                return new TodoTask(taskName, isDone);
+            case "D":
+                String by = parts[3].trim();
+                return new DeadlineTask(taskName, isDone, by);
+            case "E":
+                String from = parts[3].trim();
+                String to = parts[4].trim();
+                return new EventTask(taskName, isDone, from, to);
+        }
+        throw new IllegalArgumentException(); // maybe throw some exception
     }
 
     public static void main(String[] args) throws IOException {
