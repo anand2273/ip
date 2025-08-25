@@ -13,6 +13,10 @@ public class TaskList {
     public Task get(int idx) {
         return this.tasks.get(idx);
     }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
     public String add(Task task) {
         this.tasks.add(task);
         return "added: " + task.toString();
