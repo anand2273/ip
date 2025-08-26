@@ -10,6 +10,11 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task(String taskName, boolean isDone) {
+        this.taskName = taskName;
+        this.isDone = isDone;
+    }
+
     public String markDone() {
         String msg;
         if (isDone) {
@@ -30,6 +35,11 @@ public class Task {
             msg = "task is marked as undone\n" + this.toString();
         }
         return msg;
+    }
+
+    public String toStorage() {
+        String doneMark = isDone ? "1" : "0";
+        return "N | " + doneMark + " | " + taskName;
     }
 
     public String toString() {

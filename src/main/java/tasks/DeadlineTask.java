@@ -8,6 +8,17 @@ public class DeadlineTask extends Task {
         this.by = by;
     }
 
+    public DeadlineTask(String taskName, boolean isDone, String by) {
+        super(taskName, isDone);
+        this.by = by;
+    }
+
+    @Override
+    public String toStorage() {
+        String doneMark = isDone ? "1" : "0";
+        return "T | " + doneMark + " | " + taskName + " | " + by;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
