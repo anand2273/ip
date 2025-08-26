@@ -4,19 +4,20 @@ import storage.Storage;
 import tasks.*;
 import ui.Ui;
 
-public class Dennis {
+public class Alfred {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Storage storage = new Storage("data/dennis.txt");
+        Storage storage = new Storage("data/alfred.txt");
         TaskList taskList = storage.load();
 
-        String logo = "██████╗ ███████╗███╗   ██╗███╗   ██╗██╗███████╗\n"
-                    + "██╔══██╗██╔════╝████╗  ██║████╗  ██║██║██╔════╝\n"
-                    + "██║  ██║█████╗  ██╔██╗ ██║██╔██╗ ██║██║███████╗\n"
-                    + "██║  ██║██╔══╝  ██║╚██╗██║██║╚██╗██║██║╚════██║\n"
-                    + "██████╔╝███████╗██║ ╚████║██║ ╚████║██║███████║\n"
-                    + "╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚═╝╚══════╝\n";
-        String message = "this is DENNIS. What can I do for you?";
+        String logo = " █████╗ ██╗     ███████╗██████╗ ███████╗██████╗\n" +
+                      "██╔══██╗██║     ██╔════╝██╔══██╗██╔════╝██╔══██╗\n" +
+                      "███████║██║     █████╗  ██████╔╝█████╗  ██║  ██║\n" +
+                      "██╔══██║██║     ██╔══╝  ██╔══██╗██╔══╝  ██║  ██║\n" +
+                      "██║  ██║███████╗██║     ██║  ██║███████╗██████╔╝\n" +
+                      "╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝  ╚═╝╚══════╝╚═════╝\n";
+
+        String message = "Good day, Master Bruce. How may I assist you?";
 
         System.out.println(logo + Ui.wrapText(message));
 
