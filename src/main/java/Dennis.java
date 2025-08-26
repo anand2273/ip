@@ -1,12 +1,14 @@
+import java.io.IOException;
 import java.util.Scanner;
-
+import storage.Storage;
 import tasks.*;
 import ui.Ui;
 
 public class Dennis {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        TaskList taskList = new TaskList();
+        Storage storage = new Storage("data/dennis.txt");
+        TaskList taskList = storage.load();
 
         String logo = "██████╗ ███████╗███╗   ██╗███╗   ██╗██╗███████╗\n"
                     + "██╔══██╗██╔════╝████╗  ██║████╗  ██║██║██╔════╝\n"
@@ -25,6 +27,13 @@ public class Dennis {
             int idx;
             switch (cmd) {
                 case "bye":
+                    try {
+                        storage.save(taskList);
+                    } catch (IOException e) {
+                        System.out.println(Ui.wrapText("Catch ya later!"));
+                        sc.close();
+                        return;
+                    }
                     System.out.println(Ui.wrapText("Catch ya later!"));
                     sc.close();
                     return;
