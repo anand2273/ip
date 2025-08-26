@@ -27,19 +27,29 @@ public class Storage {
     public TaskList load() {
         File f = new File(filePath);
         ArrayList<Task> loadedTasks = new ArrayList<>();
-        try {
-            Scanner sc = new Scanner(f);
+
+        if (!f.exists()) {
+            try {
+                f.getParentFile().mkdirs(); // make directories
+                f.createNewFile();          // make empty file
+            } catch (IOException e) {
+                System.out.println("Could not create save file: " + e.getMessage());
+            }
+            return new TaskList(); // empty task list
+        }
+
+        try (Scanner sc = new Scanner(f)) { // try-with-resources auto-closes
             while (sc.hasNextLine()) {
                 String storedTask = sc.nextLine();
-                Task parsedTask = parseTask(storedTask);
-                loadedTasks.add(parsedTask);
+                try {
+                    Task parsedTask = parseTask(storedTask);
+                    loadedTasks.add(parsedTask);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Skipping bad task line: " + storedTask);
+                }
             }
-            sc.close();
         } catch (FileNotFoundException e) {
-            f.mkdirs();
-            return new TaskList();
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error loading task. Please try again.");
+            System.out.println("File not found, starting with empty task list.");
         }
         return new TaskList(loadedTasks);
     }
@@ -64,17 +74,4 @@ public class Storage {
         }
         throw new IllegalArgumentException(); // maybe throw some exception
     }
-
-    public static void main(String[] args) throws IOException {
-        Task task1 = new TodoTask("Eat");
-        Task task2 = new DeadlineTask("eat", "tomorrow");
-        TaskList taskList = new TaskList();
-        taskList.add(task1);
-        taskList.add(task2);
-        Storage storage = new Storage("data/dennis.txt");
-        storage.save(taskList);
-        System.out.println("done");
-    }
-
-
 }
