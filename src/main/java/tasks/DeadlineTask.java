@@ -1,14 +1,16 @@
 package tasks;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DeadlineTask extends Task {
-    protected String by;
+    protected LocalDate by;
 
-    public DeadlineTask(String taskName, String by) {
+    public DeadlineTask(String taskName, LocalDate by) {
         super(taskName);
         this.by = by;
     }
 
-    public DeadlineTask(String taskName, boolean isDone, String by) {
+    public DeadlineTask(String taskName, boolean isDone, LocalDate by) {
         super(taskName, isDone);
         this.by = by;
     }
@@ -21,6 +23,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
