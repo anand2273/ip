@@ -1,5 +1,6 @@
 package storage;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -65,11 +66,11 @@ public class Storage {
             case "T":
                 return new TodoTask(taskName, isDone);
             case "D":
-                String by = parts[3].trim();
+                LocalDate by = LocalDate.parse(parts[3].trim());
                 return new DeadlineTask(taskName, isDone, by);
             case "E":
-                String from = parts[3].trim();
-                String to = parts[4].trim();
+                LocalDate from = LocalDate.parse(parts[3].trim());
+                LocalDate to = LocalDate.parse(parts[4].trim());
                 return new EventTask(taskName, isDone, from, to);
         }
         throw new IllegalArgumentException(); // maybe throw some exception

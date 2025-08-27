@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import java.time.LocalDate;
 import storage.Storage;
 import tasks.*;
 import ui.Ui;
@@ -70,18 +72,28 @@ public class Alfred {
                 case "deadline":
                     try {
                         String[] remainder = parts[1].split("/by");
-                        DeadlineTask deadlineTask = new DeadlineTask(remainder[0].trim(), remainder[1].trim());
+                        String b = remainder[1].trim();
+                        LocalDate by = LocalDate.parse(b);
+                        DeadlineTask deadlineTask = new DeadlineTask(remainder[0].trim(), by);
                         String deadlineMsg = taskList.add(deadlineTask);
                         System.out.println(Ui.wrapText(deadlineMsg));
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        System.out.println("Invalid input. Please follow the prescribed format.");
+                        System.out.println(Ui.wrapText("Invalid input. Please follow the prescribed format."));
+                    } catch (DateTimeParseException e) {
+                        System.out.println(Ui.wrapText("Master Bruce, please enter the date in the following format: YYYY-MM-DD."));
                     }
                     break;
                 case "event":
                     try {
                         String[] rest = parts[1].split("/from");
                         String[] timeline = rest[1].split("/to");
-                        EventTask eventTask = new EventTask(rest[0].trim(), timeline[0].trim(), timeline[1].trim());
+                        LocalDate from = LocalDate.parse(timeline[0].trim());
+                        LocalDate to = LocalDate.parse(timeline[1].trim());
+                        if (!from.isBefore(to)) {
+                            System.out.println("The end of the event should be after its starts, Master Bruce.");
+                            return;
+                        }
+                        EventTask eventTask = new EventTask(rest[0].trim(), from, to);
                         String eventMsg = taskList.add(eventTask);
                         System.out.println(Ui.wrapText(eventMsg));
                     } catch (ArrayIndexOutOfBoundsException e) {
