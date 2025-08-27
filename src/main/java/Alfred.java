@@ -11,17 +11,9 @@ public class Alfred {
         Scanner sc = new Scanner(System.in);
         Storage storage = new Storage("data/alfred.txt");
         TaskList taskList = storage.load();
+        Ui ui = new Ui();
 
-        String logo = " █████╗ ██╗     ███████╗██████╗ ███████╗██████╗\n" +
-                      "██╔══██╗██║     ██╔════╝██╔══██╗██╔════╝██╔══██╗\n" +
-                      "███████║██║     █████╗  ██████╔╝█████╗  ██║  ██║\n" +
-                      "██╔══██║██║     ██╔══╝  ██╔══██╗██╔══╝  ██║  ██║\n" +
-                      "██║  ██║███████╗██║     ██║  ██║███████╗██████╔╝\n" +
-                      "╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝  ╚═╝╚══════╝╚═════╝\n";
-
-        String message = "Good day, Master Bruce. How may I assist you?";
-
-        System.out.println(logo + Ui.wrapText(message));
+        ui.showWelcome();
 
         while (true) {
             String line = sc.nextLine();
@@ -41,15 +33,18 @@ public class Alfred {
                     sc.close();
                     return;
                 case "list":
-                    System.out.println((Ui.wrapText(taskList.toString())));
+                    ui.showList(taskList);
                     break;
                 case "mark":
                 case "unmark":
                     try {
                         idx = Integer.parseInt(parts[1]) - 1;
                         Task task = taskList.get(idx);
-                        String result = cmd.equals("mark") ? task.markDone() : task.markUndone();
-                        System.out.println(Ui.wrapText(result));
+                        if (cmd.equals("mark")) {
+                            ui.showMarked(task, task.markDone());
+                        } else {
+                            ui.showUnmarked(task, task.markUndone());
+                        }
                     }
                     catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println(Ui.wrapText("Please specify the task number in the following format: 'mark 1'"));
@@ -63,8 +58,8 @@ public class Alfred {
                     try {
                         String taskName = parts[1];
                         TodoTask todoTask = new TodoTask(taskName);
-                        String todoMsg = taskList.add(todoTask);
-                        System.out.println(Ui.wrapText(todoMsg));
+                        taskList.add(todoTask);
+                        ui.showAddedTask(todoTask);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Please specify a task.");
                     }
@@ -75,8 +70,8 @@ public class Alfred {
                         String b = remainder[1].trim();
                         LocalDate by = LocalDate.parse(b);
                         DeadlineTask deadlineTask = new DeadlineTask(remainder[0].trim(), by);
-                        String deadlineMsg = taskList.add(deadlineTask);
-                        System.out.println(Ui.wrapText(deadlineMsg));
+                        taskList.add(deadlineTask);
+                        ui.showAddedTask(deadlineTask);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println(Ui.wrapText("Invalid input. Please follow the prescribed format."));
                     } catch (DateTimeParseException e) {
@@ -91,24 +86,24 @@ public class Alfred {
                         LocalDate to = LocalDate.parse(timeline[1].trim());
                         if (!from.isBefore(to)) {
                             System.out.println("The end of the event should be after its starts, Master Bruce.");
-                            return;
                         }
                         EventTask eventTask = new EventTask(rest[0].trim(), from, to);
-                        String eventMsg = taskList.add(eventTask);
-                        System.out.println(Ui.wrapText(eventMsg));
+                        taskList.add(eventTask);
+                        ui.showAddedTask(eventTask);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Invalid input. Please follow the prescribed format.");
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Please enter the correct format, Master Bruce.");
                     }
                     break;
                 case "delete":
                     int pos = Integer.parseInt(parts[1]) - 1;
-                    String deleteMsg = taskList.delete(pos);
-                    System.out.println(Ui.wrapText(deleteMsg));
+                    Task deleteTask = taskList.get(pos);
+                    taskList.delete(pos);
+                    ui.showDelete(taskList, deleteTask);
                     break;
                 default:
-                    Task task = new Task(line);
-                    String output = taskList.add(task);
-                    System.out.println(Ui.wrapText(output));
+                    ui.showDefault();
                     break;
             }
         }
