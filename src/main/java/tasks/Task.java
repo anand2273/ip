@@ -15,26 +15,20 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public String markDone() {
-        String msg;
+    public boolean markDone() {
         if (isDone) {
-            msg = "task is already marked as done\n" + this.toString();
-        } else {
-            isDone = true;
-            msg = "task is marked as done\n" + this.toString();
+            return false;
         }
-        return msg;
+        isDone = true;
+        return true;
     }
 
-    public String markUndone() {
-        String msg;
+    public boolean markUndone() {
         if (!isDone) {
-            msg = "task is already marked as undone\n" + this.toString();
-        } else {
-            isDone = false;
-            msg = "task is marked as undone\n" + this.toString();
+            return false;
         }
-        return msg;
+        isDone = false;
+        return true;
     }
 
     public String toStorage() {
@@ -47,6 +41,6 @@ public class Task {
         if (isDone) {
             doneMark = "[X] ";
         }
-        return doneMark + this.taskName;
+        return doneMark + taskName;
     }
 }
