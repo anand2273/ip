@@ -1,81 +1,109 @@
-██████╗ ███████╗███╗   ██╗███╗   ██╗██╗███████╗
-██╔══██╗██╔════╝████╗  ██║████╗  ██║██║██╔════╝
-██║  ██║█████╗  ██╔██╗ ██║██╔██╗ ██║██║███████╗
-██║  ██║██╔══╝  ██║╚██╗██║██║╚██╗██║██║╚════██║
-██████╔╝███████╗██║ ╚████║██║ ╚████║██║███████║
-╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚═╝╚══════╝
 _______________________________________
-this is DENNIS. What can I do for you?
+
+ █████╗ ██╗     ███████╗██████╗ ███████╗██████╗
+██╔══██╗██║     ██╔════╝██╔══██╗██╔════╝██╔══██╗
+███████║██║     █████╗  ██████╔╝█████╗  ██║  ██║
+██╔══██║██║     ██╔══╝  ██╔══██╗██╔══╝  ██║  ██║
+██║  ██║███████╗██║     ██║  ██║███████╗██████╔╝
+╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝  ╚═╝╚══════╝╚═════╝
+Good day, Master Bruce. How may I assist you?
 _______________________________________
 
 _______________________________________
-added: [] hello
+no tasks yet. get to work
 _______________________________________
 
 _______________________________________
-Your Tasks:
-1. [] hello
+This task has been successfully added:
+[T][] read
 _______________________________________
 
 _______________________________________
-added: [T][] read book
+This task has been successfully added:
+[T][] sleep
 _______________________________________
 
 _______________________________________
-added: [D][] do homework (by: tonight)
+This task has been successfully added:
+[T][] study
 _______________________________________
 
 _______________________________________
-added: [E][] project meeting (from: Mon 2pm to: Mon 4pm)
+This task has been successfully added:
+[D][]  (by: Jan 1 2019)
 _______________________________________
 
 _______________________________________
-task is marked as done
-[T][X] read book
+Usage: deadline <desc> /by YYYY-MM-DD (date must be YYYY-MM-DD)
 _______________________________________
 
 _______________________________________
-task is already marked as done
-[T][X] read book
+Usage: event <desc> /from YYYY-MM-DD /to YYYY-MM-DD (date must be YYYY-MM-DD)
 _______________________________________
 
 _______________________________________
-task is marked as undone
-[T][] read book
+This task has been successfully added:
+[E][]  (from: Jan 1 2019 to: Jan 2 2019)
 _______________________________________
 
 _______________________________________
-task is already marked as undone
-[T][] read book
-_______________________________________
-
-_______________________________________
-That task number does not exist. Please use the list command for task numbers.
-_______________________________________
-
-_______________________________________
-Please specify a numerical value for the task number in the following format: 'mark 1'
-_______________________________________
-
-_______________________________________
-task is marked as done
-[D][X] do homework (by: tonight)
-_______________________________________
-
-_______________________________________
-Noted. Removed this task
-[] hello
-There are 3 tasks left
+Task has been marked as done, Master Bruce.
+[T][X] read
 _______________________________________
 
 _______________________________________
 Your Tasks:
-1. [T][] read book
-2. [D][X] do homework (by: tonight)
-3. [E][] project meeting (from: Mon 2pm to: Mon 4pm)
+1. [T][X] read
+2. [T][] sleep
+3. [T][] study
+4. [D][]  (by: Jan 1 2019)
+5. [E][]  (from: Jan 1 2019 to: Jan 2 2019)
 _______________________________________
 
 _______________________________________
-Catch ya later!
+Task has already been marked as done, Master Bruce.
+[T][X] read
+_______________________________________
+
+_______________________________________
+Your Tasks:
+1. [T][X] read
+2. [T][] sleep
+3. [T][] study
+4. [D][]  (by: Jan 1 2019)
+5. [E][]  (from: Jan 1 2019 to: Jan 2 2019)
+_______________________________________
+
+_______________________________________
+Task has been marked as undone, Master Bruce.
+[T][] read
+_______________________________________
+
+_______________________________________
+Your Tasks:
+1. [T][] read
+2. [T][] sleep
+3. [T][] study
+4. [D][]  (by: Jan 1 2019)
+5. [E][]  (from: Jan 1 2019 to: Jan 2 2019)
+_______________________________________
+
+_______________________________________
+Task has already been marked as undone, Master Bruce.
+[T][] read
+_______________________________________
+
+_______________________________________
+Noted, Master Bruce. This task has been successfully deleted:
+[T][] read
+There are 4 tasks left.
+_______________________________________
+
+_______________________________________
+Your Tasks:
+1. [T][] sleep
+2. [T][] study
+3. [D][]  (by: Jan 1 2019)
+4. [E][]  (from: Jan 1 2019 to: Jan 2 2019)
 _______________________________________
 

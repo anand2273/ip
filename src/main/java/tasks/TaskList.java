@@ -18,19 +18,19 @@ public class TaskList {
         return this.tasks.get(idx);
     }
 
+    public int size() {
+        return tasks.size();
+    }
+
     public ArrayList<Task> getTasks() {
         return tasks;
     }
-    public String add(Task task) {
+    public void add(Task task) {
         this.tasks.add(task);
-        return "added: " + task.toString();
     }
 
-    public String delete(int idx) {
-        Task task = tasks.get(idx);
+    public void delete(int idx) {
         tasks.remove(idx);
-        int size = tasks.size();
-        return "Noted. Removed this task\n" + task + "\n" + String.format("There are %d tasks left", size);
     }
 
     @Override
