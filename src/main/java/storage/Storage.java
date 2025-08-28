@@ -11,10 +11,23 @@ import task.*;
 public class Storage {
     private final String filePath;
 
+    /**
+     * Creates a storage helper bound to a specific filesystem path for saving and loading tasks.
+     *
+     * @param filePath Path to the storage file (relative or absolute). Parent directories will be
+     *                 created on the first {@link #load()} if they do not exist.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Writes all tasks to the backing file, one line per task, using each task's
+     * {@link task.Task#toStorage()} representation. Existing file contents are overwritten.
+     *
+     * @param tasks Task list to persist.
+     * @throws IOException If the file cannot be created or written to.
+     */
     public void save(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         String textToAdd = "";
@@ -25,6 +38,13 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Loads tasks from the backing file into a {@link task.TaskList}. If the file does not exist,
+     * it (and any missing parent directories) is created and an empty list is returned. Lines that
+     * cannot be parsed are skipped.
+     *
+     * @return A {@link task.TaskList} containing the successfully parsed tasks (possibly empty).
+     */
     public TaskList load() {
         File f = new File(filePath);
         ArrayList<Task> loadedTasks = new ArrayList<>();

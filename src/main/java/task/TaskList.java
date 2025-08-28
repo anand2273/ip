@@ -5,10 +5,19 @@ import java.lang.StringBuilder;
 public class TaskList {
     private final ArrayList<Task> tasks;
 
+    /**
+     * Creates an empty task list.
+     */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
     }
 
+    /**
+     * Uses the provided list as the backing store for this {@code TaskList}.
+     * The list is not defensively copied; mutations are reflected both ways.
+     *
+     * @param tasks existing list to back this {@code TaskList}
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
@@ -24,14 +33,33 @@ public class TaskList {
     public ArrayList<Task> getTasks() {
         return tasks;
     }
+
+    /**
+     * Appends a task to the end of the list.
+     *
+     * @param task task to add
+     */
     public void add(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * Removes the task at the specified zero-based index.
+     * Subsequent elements shift left (decrement their indices by one).
+     *
+     * @param idx zero-based index of the task to remove
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */
     public void delete(int idx) {
         tasks.remove(idx);
     }
 
+    /**
+     * Returns a human-friendly multi-line summary of tasks,
+     * or a short message if the list is empty.
+     *
+     * @return string summary intended for display
+     */
     @Override
     public String toString() {
         if (tasks.isEmpty()) {

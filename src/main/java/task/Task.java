@@ -4,16 +4,32 @@ public abstract class Task {
     protected final String taskName;
     protected boolean isDone;
 
+    /**
+     * Creates a new task with the given name, initially marked as not done.
+     *
+     * @param taskName human-readable name of the task
+     */
     public Task(String taskName) {
         this.taskName = taskName;
         this.isDone = false;
     }
 
+    /**
+     * Creates a new task with the given name and explicit completion state.
+     *
+     * @param taskName human-readable name of the task
+     * @param isDone   initial completion state ({@code true} if done)
+     */
     public Task(String taskName, boolean isDone) {
         this.taskName = taskName;
         this.isDone = isDone;
     }
 
+    /**
+     * Marks the task as done.
+     *
+     * @return {@code true} if the state changed from not done to done; {@code false} if it was already done
+     */
     public boolean markDone() {
         if (isDone) {
             return false;
@@ -22,6 +38,11 @@ public abstract class Task {
         return true;
     }
 
+    /**
+     * Marks the task as not done.
+     *
+     * @return {@code true} if the state changed from done to not done; {@code false} if it was already not done
+     */
     public boolean markUndone() {
         if (!isDone) {
             return false;
@@ -30,8 +51,19 @@ public abstract class Task {
         return true;
     }
 
+    /**
+     * Produces a stable, single-line storage encoding for this task that can be parsed later.
+     *
+     * @return storage representation of this task (e.g., {@code "D | 1 | name | 2025-12-31"})
+     */
     public abstract String toStorage();
 
+    /**
+     * Returns a concise human-readable representation of this task with a status checkbox.
+     * Uses {@code "[X] "} when completed and {@code "[] "} when not completed, followed by the task name.
+     *
+     * @return display string for this task
+     */
     public String toString() {
         String doneMark = "[] ";
         if (isDone) {

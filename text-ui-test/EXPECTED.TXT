@@ -10,7 +10,7 @@ Good day, Master Bruce. How may I assist you?
 _______________________________________
 
 _______________________________________
-no task yet. get to work
+no tasks yet. get to work
 _______________________________________
 
 _______________________________________
@@ -96,7 +96,7 @@ _______________________________________
 _______________________________________
 Noted, Master Bruce. This task has been successfully deleted:
 [T][] read
-There are 4 task left.
+There are 4 tasks left.
 _______________________________________
 
 _______________________________________
