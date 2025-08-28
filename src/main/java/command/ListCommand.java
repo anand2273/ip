@@ -1,5 +1,5 @@
 package command;
-import tasks.TaskList;
+import task.TaskList;
 import ui.Ui;
 
 public class ListCommand extends Command {

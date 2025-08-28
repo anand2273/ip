@@ -1,6 +1,6 @@
 package command;
-import tasks.Task;
-import tasks.TaskList;
+import task.Task;
+import task.TaskList;
 import ui.Ui;
 
 public class DeleteCommand extends Command {

@@ -1,8 +1,6 @@
 package command;
-import java.time.LocalDate;
-import tasks.Task;
-import tasks.DeadlineTask;
-import tasks.TaskList;
+import task.Task;
+import task.TaskList;
 import ui.Ui;
 
 public class MarkCommand extends Command {

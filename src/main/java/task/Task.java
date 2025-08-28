@@ -1,7 +1,6 @@
-package tasks;
-import ui.Ui;
+package task;
 
-public class Task {
+public abstract class Task {
     protected final String taskName;
     protected boolean isDone;
 
@@ -31,10 +30,7 @@ public class Task {
         return true;
     }
 
-    public String toStorage() {
-        String doneMark = isDone ? "1" : "0";
-        return "N | " + doneMark + " | " + taskName;
-    }
+    public abstract String toStorage();
 
     public String toString() {
         String doneMark = "[] ";

@@ -1,7 +1,6 @@
-package tasks;
+package task;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
-import ui.Ui;
 
 public class TaskList {
     private final ArrayList<Task> tasks;

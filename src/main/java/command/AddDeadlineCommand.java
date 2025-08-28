@@ -1,7 +1,7 @@
 package command;
 import java.time.LocalDate;
-import tasks.DeadlineTask;
-import tasks.TaskList;
+import task.DeadlineTask;
+import task.TaskList;
 import ui.Ui;
 
 public class AddDeadlineCommand extends Command {
