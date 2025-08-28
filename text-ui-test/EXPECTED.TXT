@@ -34,10 +34,13 @@ This task has been successfully added:
 _______________________________________
 
 _______________________________________
-Master Bruce, please enter the date in the following format: YYYY-MM-DD.
+Usage: deadline <desc> /by YYYY-MM-DD (date must be YYYY-MM-DD)
 _______________________________________
 
-Please enter the correct format, Master Bruce.
+_______________________________________
+Usage: event <desc> /from YYYY-MM-DD /to YYYY-MM-DD (date must be YYYY-MM-DD)
+_______________________________________
+
 _______________________________________
 This task has been successfully added:
 [E][]  (from: Jan 1 2019 to: Jan 2 2019)
