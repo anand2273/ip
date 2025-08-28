@@ -4,5 +4,5 @@ import tasks.TaskList;
 import ui.Ui;
 
 public abstract class Command {
-    abstract void execute(TaskList tasks, Ui ui);
+    public abstract void execute(TaskList tasks, Ui ui);
 }

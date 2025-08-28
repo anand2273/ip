@@ -6,8 +6,8 @@ import tasks.TaskList;
 import ui.Ui;
 
 public class MarkCommand extends Command {
-    private int pos;
-    private String cmd;
+    private final int pos;
+    private final String cmd;
 
     public MarkCommand(int pos, String cmd) {
         this.pos = pos;
