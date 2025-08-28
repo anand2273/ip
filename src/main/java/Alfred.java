@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.time.LocalDate;
+
+import command.*;
 import storage.Storage;
 import tasks.*;
 import ui.Ui;
@@ -25,26 +27,23 @@ public class Alfred {
                     try {
                         storage.save(taskList);
                     } catch (IOException e) {
-                        System.out.println(Ui.wrapText("Catch ya later!"));
+                        ui.showBye();
                         sc.close();
                         return;
                     }
-                    System.out.println(Ui.wrapText("Catch ya later!"));
+                    ui.showBye();
                     sc.close();
                     return;
                 case "list":
-                    ui.showList(taskList);
+                    Command listCommand = new ListCommand();
+                    listCommand.execute(taskList, ui);
                     break;
                 case "mark":
                 case "unmark":
                     try {
                         idx = Integer.parseInt(parts[1]) - 1;
-                        Task task = taskList.get(idx);
-                        if (cmd.equals("mark")) {
-                            ui.showMarked(task, task.markDone());
-                        } else {
-                            ui.showUnmarked(task, task.markUndone());
-                        }
+                        Command markCommand = new MarkCommand(idx, cmd);
+                        markCommand.execute(taskList, ui);
                     }
                     catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println(Ui.wrapText("Please specify the task number in the following format: 'mark 1'"));
@@ -57,9 +56,8 @@ public class Alfred {
                 case "todo":
                     try {
                         String taskName = parts[1];
-                        TodoTask todoTask = new TodoTask(taskName);
-                        taskList.add(todoTask);
-                        ui.showAddedTask(todoTask);
+                        AddTodoCommand atc = new AddTodoCommand(taskName);
+                        atc.execute(taskList, ui);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Please specify a task.");
                     }
@@ -69,9 +67,8 @@ public class Alfred {
                         String[] remainder = parts[1].split("/by");
                         String b = remainder[1].trim();
                         LocalDate by = LocalDate.parse(b);
-                        DeadlineTask deadlineTask = new DeadlineTask(remainder[0].trim(), by);
-                        taskList.add(deadlineTask);
-                        ui.showAddedTask(deadlineTask);
+                        AddDeadlineCommand adc = new AddDeadlineCommand(remainder[0].trim(), by);
+                        adc.execute(taskList, ui);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println(Ui.wrapText("Invalid input. Please follow the prescribed format."));
                     } catch (DateTimeParseException e) {
@@ -84,12 +81,8 @@ public class Alfred {
                         String[] timeline = rest[1].split("/to");
                         LocalDate from = LocalDate.parse(timeline[0].trim());
                         LocalDate to = LocalDate.parse(timeline[1].trim());
-                        if (!from.isBefore(to)) {
-                            System.out.println("The end of the event should be after its starts, Master Bruce.");
-                        }
-                        EventTask eventTask = new EventTask(rest[0].trim(), from, to);
-                        taskList.add(eventTask);
-                        ui.showAddedTask(eventTask);
+                        AddEventCommand aec = new AddEventCommand(rest[0].trim(), from, to);
+                        aec.execute(taskList, ui);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Invalid input. Please follow the prescribed format.");
                     } catch (DateTimeParseException e) {
@@ -98,9 +91,8 @@ public class Alfred {
                     break;
                 case "delete":
                     int pos = Integer.parseInt(parts[1]) - 1;
-                    Task deleteTask = taskList.get(pos);
-                    taskList.delete(pos);
-                    ui.showDelete(taskList, deleteTask);
+                    DeleteCommand dc = new DeleteCommand(pos);
+                    dc.execute(taskList, ui);
                     break;
                 default:
                     ui.showDefault();

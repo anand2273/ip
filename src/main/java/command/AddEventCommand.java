@@ -17,6 +17,10 @@ public class AddEventCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui) {
+        if (!from.isBefore(to)) {
+            System.out.println("The end of the event should be after it starts, Master Bruce.");
+            return;
+        }
         EventTask eventTask = new EventTask(description, from, to);
         tasks.add(eventTask);
         ui.showAddedTask(eventTask);

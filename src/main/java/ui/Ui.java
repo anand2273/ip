@@ -55,4 +55,8 @@ public class Ui {
         System.out.println("Good Evening, Master Bruce. Please use the commands to continue.");
     }
 
+    public void showBye() {
+        System.out.println(Ui.wrapText("Thank you, Master Bruce. See you soon."));
+    }
+
 }
