@@ -1,4 +1,4 @@
-package tasks;
+package task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -18,7 +18,7 @@ public class DeadlineTask extends Task {
     @Override
     public String toStorage() {
         String doneMark = isDone ? "1" : "0";
-        return "T | " + doneMark + " | " + taskName + " | " + by;
+        return "D | " + doneMark + " | " + taskName + " | " + by;
     }
 
     @Override

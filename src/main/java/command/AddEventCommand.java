@@ -1,7 +1,7 @@
 package command;
 import java.time.LocalDate;
-import tasks.EventTask;
-import tasks.TaskList;
+import task.EventTask;
+import task.TaskList;
 import ui.Ui;
 
 public class AddEventCommand extends Command {

@@ -1,6 +1,5 @@
 package command;
-import tasks.TaskList;
-import tasks.TodoTask;
+import task.TaskList;
 import ui.Ui;
 
 public class ExitCommand extends Command {

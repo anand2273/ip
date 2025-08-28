@@ -5,7 +5,7 @@ import command.Command;
 import exceptions.AlfredException;
 import parser.Parser;
 import storage.Storage;
-import tasks.TaskList;
+import task.TaskList;
 import ui.Ui;
 
 public class Alfred {

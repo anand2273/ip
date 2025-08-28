@@ -1,6 +1,6 @@
 package ui;
-import tasks.TaskList;
-import tasks.Task;
+import task.TaskList;
+import task.Task;
 
 public class Ui {
     public static final String INDENTATION = "_______________________________________\n";
