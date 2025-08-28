@@ -10,6 +10,19 @@ import java.time.format.DateTimeParseException;
 
 public final class Parser {
 
+    /**
+     * Parses a raw user input line into a concrete {@link command.Command}.
+     * The first token is matched case-insensitively to a {@link command.CommandType}.
+     * Arguments are split using required delimiters (e.g., {@code /by}, {@code /from}, {@code /to}).
+     * Dates must be in ISO format {@code YYYY-MM-DD}. Task indices are read as positive integers
+     * (1-based from the user) and converted to 0-based for internal use.
+     *
+     * @param line Raw input line; may contain leading/trailing or extra internal whitespace.
+     * @return A concrete {@link command.Command} to execute.
+     * @throws exceptions.AlfredException If the input is empty, the command is unknown, a required
+     *                                    delimiter is missing, the task index is invalid, or a date
+     *                                    is not in {@code YYYY-MM-DD} format.
+     */
     public static Command parse(String line) throws AlfredException {
         if (line == null || line.trim().isEmpty()) {
             throw new AlfredException("Empty input, Master Bruce.");
