@@ -1,12 +1,25 @@
 package storage;
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import task.*;
+import java.time.LocalDate;
+
+import task.TaskList;
+import task.Task;
+import task.TodoTask;
+import task.DeadlineTask;
+import task.EventTask;
+
+/**
+ * @author Anand Bala
+ * The storage class deals with the saving and loading of tasks onto the disk, in order for the
+ * user to retain their data in between separate runs of the program. If the file does not exist,
+ * it makes the file and any related parent directories.
+ */
 
 public class Storage {
     private final String filePath;

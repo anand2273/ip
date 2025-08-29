@@ -1,12 +1,25 @@
 // parser/Parser.java
 package parser;
 
-import command.*;
-import exceptions.AlfredException;
-import command.CommandType;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+
+import command.CommandType;
+import command.Command;
+import command.AddTodoCommand;
+import command.AddDeadlineCommand;
+import command.AddEventCommand;
+import command.DeleteCommand;
+import command.ExitCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import exceptions.AlfredException;
+
+/**
+ * @author Anand Bala
+ * The Parser class provides a static method to be able to read and clean raw user input, such that it
+ * can be translated into commands and subsequently be executed.
+ */
 
 public final class Parser {
 
@@ -40,41 +53,41 @@ public final class Parser {
         }
 
         switch (type) {
-            case BYE:
-                return new ExitCommand();
+        case BYE:
+            return new ExitCommand();
 
-            case LIST:
-                return new ListCommand();
+        case LIST:
+            return new ListCommand();
 
-            case MARK:
-                return new MarkCommand(parseIndex(args), "mark");
+        case MARK:
+            return new MarkCommand(parseIndex(args), "mark");
 
-            case UNMARK:
-                return new MarkCommand(parseIndex(args), "unmark");
+        case UNMARK:
+            return new MarkCommand(parseIndex(args), "unmark");
 
-            case TODO:
-                if (args.isEmpty()) throw new AlfredException("Usage: todo <description>");
-                return new AddTodoCommand(args);
+        case TODO:
+            if (args.isEmpty()) throw new AlfredException("Usage: todo <description>");
+            return new AddTodoCommand(args);
 
-            case DEADLINE: {
-                String[] p = splitOnce(args, "/by");
-                LocalDate by = parseDate(p[1], "Usage: deadline <desc> /by YYYY-MM-DD");
-                return new AddDeadlineCommand(p[0].trim(), by);
-            }
+        case DEADLINE: {
+            String[] p = splitOnce(args, "/by");
+            LocalDate by = parseDate(p[1], "Usage: deadline <desc> /by YYYY-MM-DD");
+            return new AddDeadlineCommand(p[0].trim(), by);
+        }
 
-            case EVENT: {
-                String[] pFrom = splitOnce(args, "/from");
-                String[] pTo   = splitOnce(pFrom[1], "/to");
-                LocalDate from = parseDate(pTo[0], "Usage: event <desc> /from YYYY-MM-DD /to YYYY-MM-DD");
-                LocalDate to   = parseDate(pTo[1], "Usage: event <desc> /from YYYY-MM-DD /to YYYY-MM-DD");
-                return new AddEventCommand(pFrom[0].trim(), from, to);
-            }
+        case EVENT: {
+            String[] pFrom = splitOnce(args, "/from");
+            String[] pTo   = splitOnce(pFrom[1], "/to");
+            LocalDate from = parseDate(pTo[0], "Usage: event <desc> /from YYYY-MM-DD /to YYYY-MM-DD");
+            LocalDate to   = parseDate(pTo[1], "Usage: event <desc> /from YYYY-MM-DD /to YYYY-MM-DD");
+            return new AddEventCommand(pFrom[0].trim(), from, to);
+        }
 
-            case DELETE:
-                return new DeleteCommand(parseIndex(args));
+        case DELETE:
+            return new DeleteCommand(parseIndex(args));
 
-            default:
-                throw new AlfredException("Good Evening, Master Bruce. Please use the commands to continue.");
+        default:
+            throw new AlfredException("Good Evening, Master Bruce. Please use the commands to continue.");
         }
     }
 

@@ -1,5 +1,11 @@
 package task;
 
+/**
+ * @author Anand Bala
+ * Outlines the properties of the Task object. Its subclasses have additional fields,
+ * depending on the type of task that they are.
+ */
+
 public abstract class Task {
     protected final String taskName;
     protected boolean isDone;

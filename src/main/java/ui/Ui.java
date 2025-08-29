@@ -2,6 +2,11 @@ package ui;
 import task.TaskList;
 import task.Task;
 
+/**
+ * @author Anand Bala
+ * Primarily deals with user-facing logic, generating the UI components to be shown to the user.
+ */
+
 public class Ui {
     public static final String INDENTATION = "_______________________________________\n";
 

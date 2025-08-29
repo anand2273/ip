@@ -1,7 +1,15 @@
 package command;
 
 import task.TaskList;
+
 import ui.Ui;
+
+/**
+ * @author Anand Bala
+ * This class outlines the various commands that are actually executed within the program.
+ * Each subclass of the command class refers to a specific type of command, and implements
+ * the execute method accordingly.
+ */
 
 public abstract class Command {
     /**
