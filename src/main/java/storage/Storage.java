@@ -43,11 +43,11 @@ public class Storage {
      */
     public void save(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
-        String textToAdd = "";
+        String txt = "";
         for (Task t : tasks.getTasks()) {
-            textToAdd += t.toStorage() + System.lineSeparator();
+            txt += t.toStorage() + System.lineSeparator();
         }
-        fw.write(textToAdd);
+        fw.write(txt);
         fw.close();
     }
 
