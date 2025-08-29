@@ -113,6 +113,15 @@ public class Ui {
     }
 
     /**
+     * Prints the tasks that are found by a simple keyword search.
+     *
+     * @param tasks the tasks to show, that match
+     */
+    public void showFind(TaskList tasks) {
+        System.out.println(Ui.wrapText("These are the tasks that matches your search, sir.\n" + tasks));
+    }
+
+    /**
      * Prints the farewell message and exits the interaction context.
      */
     public void showBye() {

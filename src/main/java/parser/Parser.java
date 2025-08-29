@@ -11,9 +11,12 @@ import command.AddDeadlineCommand;
 import command.AddEventCommand;
 import command.DeleteCommand;
 import command.ExitCommand;
+import command.FindCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import exceptions.AlfredException;
+
+import task.TaskList;
 
 /**
  * @author Anand Bala
@@ -69,20 +72,23 @@ public final class Parser {
             if (args.isEmpty()) throw new AlfredException("Usage: todo <description>");
             return new AddTodoCommand(args);
 
-        case DEADLINE: {
+        case DEADLINE:
             String[] p = splitOnce(args, "/by");
             LocalDate by = parseDate(p[1], "Usage: deadline <desc> /by YYYY-MM-DD");
             return new AddDeadlineCommand(p[0].trim(), by);
-        }
 
-        case EVENT: {
+        case EVENT:
             String[] pFrom = splitOnce(args, "/from");
             String[] pTo   = splitOnce(pFrom[1], "/to");
             LocalDate from = parseDate(pTo[0], "Usage: event <desc> /from YYYY-MM-DD /to YYYY-MM-DD");
             LocalDate to   = parseDate(pTo[1], "Usage: event <desc> /from YYYY-MM-DD /to YYYY-MM-DD");
             return new AddEventCommand(pFrom[0].trim(), from, to);
-        }
 
+        case FIND:
+            if (args.isEmpty()) {
+                throw new AlfredException("Usage: find <keyword>");
+            }
+            return new FindCommand(args);
         case DELETE:
             return new DeleteCommand(parseIndex(args));
 
