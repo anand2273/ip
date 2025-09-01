@@ -1,14 +1,13 @@
 package command;
 
 import task.TaskList;
-
 import ui.Ui;
 
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui) {
-        ui.showBye();
+    public String execute(TaskList tasks, Ui ui) {
+        return "Thank you, Master Bruce. See you soon.";
     }
 
     @Override

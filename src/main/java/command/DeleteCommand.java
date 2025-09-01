@@ -13,9 +13,11 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         Task deleteTask = tasks.get(pos);
         tasks.delete(pos);
-        ui.showDelete(tasks, deleteTask);
+        String message = "Noted, Master Bruce. This task has been successfully deleted:\n" + deleteTask + "\n";
+        message += "There are " + tasks.size() + " tasks left.";
+        return message;
     }
 }

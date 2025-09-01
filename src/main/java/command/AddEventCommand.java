@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import task.EventTask;
 import task.TaskList;
-
 import ui.Ui;
 
 public class AddEventCommand extends Command {
@@ -19,13 +18,12 @@ public class AddEventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         if (!from.isBefore(to)) {
-            System.out.println("The end of the event should be after it starts, Master Bruce.");
-            return;
+            return Ui.wrapText("The end of the event should be after it starts, Master Bruce.");
         }
         EventTask eventTask = new EventTask(description, from, to);
         tasks.add(eventTask);
-        ui.showAddedTask(eventTask);
+        return "This task has been successfully added:\n";
     }
 }

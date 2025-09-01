@@ -43,4 +43,8 @@ public class Alfred {
             }
         }
     }
+
+    public String getResponse(String input) {
+        return "Alfred heard: " + input;
+    }
 }

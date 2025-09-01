@@ -14,12 +14,22 @@ public class MarkCommand extends Command {
         this.cmd = cmd;
     }
 
-    public void execute(TaskList tasks, Ui ui) {
+    @Override
+    public String execute(TaskList tasks, Ui ui) {
         Task task = tasks.get(pos);
+        String message;
         if (cmd.equals("mark")) {
-            ui.showMarked(task, task.markDone());
+            boolean marked = task.markDone();
+            message = marked
+                ? "Task has been marked as done, Master Bruce.\n"
+                : "Task has already been marked as done, Master Bruce.\n";
         } else {
-            ui.showUnmarked(task, task.markUndone());
+            boolean marked = task.markUndone();
+            message = marked
+                ? "Task has been marked as undone, Master Bruce.\n"
+                : "Task has already been marked as undone, Master Bruce.\n";
         }
+        message += task.toString();
+        return message;
     }
 }

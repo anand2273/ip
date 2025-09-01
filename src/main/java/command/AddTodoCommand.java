@@ -2,7 +2,6 @@ package command;
 
 import task.TaskList;
 import task.TodoTask;
-
 import ui.Ui;
 
 public class AddTodoCommand extends Command {
@@ -13,9 +12,9 @@ public class AddTodoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         TodoTask todoTask = new TodoTask(description);
         tasks.add(todoTask);
-        ui.showAddedTask(todoTask);
+        return "This task has been successfully added:\n" + todoTask;
     }
 }

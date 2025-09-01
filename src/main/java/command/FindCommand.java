@@ -10,8 +10,9 @@ public class FindCommand extends Command {
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
+
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         TaskList matches = new TaskList();
         String kw = keyword.toLowerCase();
 
@@ -20,6 +21,6 @@ public class FindCommand extends Command {
                 matches.add(t);
             }
         }
-        ui.showFind(matches);
+        return "These are the tasks that matches your search, sir.\n" + matches;
     }
 }
