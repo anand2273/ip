@@ -1,3 +1,5 @@
+package alfred;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -9,6 +11,14 @@ import task.TaskList;
 import ui.Ui;
 
 public class Alfred {
+    private TaskList tasks;
+    private Storage storage;
+
+    public Alfred(String filePath) {
+        this.storage = new Storage(filePath);
+        this.tasks = storage.load();
+    }
+
     public static void main(String[] args) {
         Ui ui = new Ui();
         Storage storage = new Storage("data/alfred.txt");
@@ -45,6 +55,13 @@ public class Alfred {
     }
 
     public String getResponse(String input) {
-        return "Alfred heard: " + input;
+        try {
+            Command cmd = Parser.parse(input);
+            return cmd.execute(tasks, new Ui());
+        } catch (AlfredException e) {
+            return e.getMessage();
+        } catch (Exception e) {
+            return "Unexpected error: " + e.getMessage();
+        }
     }
 }
