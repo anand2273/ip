@@ -22,13 +22,15 @@ public class Alfred {
     public static void main(String[] args) {
         Ui ui = new Ui();
         Storage storage = new Storage("data/alfred.txt");
-        TaskList tasks = storage.load();              // load tasks at startup
+        TaskList tasks = storage.load(); // load tasks at startup
 
         ui.showWelcome();
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
-                if (!sc.hasNextLine()) break;        // EOF ends program cleanly
+                if (!sc.hasNextLine()) {
+                    break;        // EOF ends program cleanly
+                }
                 String line = sc.nextLine();
 
                 try {
