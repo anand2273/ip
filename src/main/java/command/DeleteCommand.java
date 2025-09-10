@@ -14,6 +14,11 @@ public class DeleteCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui) {
+        assert tasks != null;
+        assert ui != null;
+        assert pos >= 0;
+        assert pos < tasks.size();
+
         Task deleteTask = tasks.get(pos);
         tasks.delete(pos);
         String message = "Noted, Master Bruce. This task has been successfully deleted:\n" + deleteTask + "\n";

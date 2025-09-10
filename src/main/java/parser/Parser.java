@@ -91,6 +91,7 @@ public final class Parser {
             return new FindCommand(args);
         case DELETE:
             return new DeleteCommand(parseIndex(args));
+
         default:
             throw new AlfredException("Good Evening, Master Bruce. Please use the commands to continue.");
         }
@@ -98,10 +99,7 @@ public final class Parser {
 
     // --- helpers ---
     private static int parseIndex(String arg) throws AlfredException {
-        if (arg.isEmpty()) {
-            throw new AlfredException("Please specify a task number, e.g., \"mark 1\".");
-        }
-
+        if (arg.isEmpty()) throw new AlfredException("Please specify a task number, e.g., \"mark 1\".");
         try {
             int idx1 = Integer.parseInt(arg.trim());
             if (idx1 <= 0) throw new NumberFormatException();
@@ -112,7 +110,6 @@ public final class Parser {
     }
 
     private static String[] splitOnce(String src, String delimiter) throws AlfredException {
-        // split on the first occurrence of the delimiter, ignoring surrounding whitespace
         String[] p = src.split("\\s*" + java.util.regex.Pattern.quote(delimiter) + "\\s*", 2);
         if (p.length < 2) {
             throw new AlfredException("Missing " + delimiter + ". Example: " + delimiter + " YYYY-MM-DD");
