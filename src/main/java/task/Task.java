@@ -16,6 +16,8 @@ public abstract class Task {
      * @param taskName human-readable name of the task
      */
     public Task(String taskName) {
+        assert taskName != null : "Task name cannot be null";
+        assert !taskName.trim().isEmpty() : "Task name cannot be empty";
         this.taskName = taskName;
         this.isDone = false;
     }
@@ -27,11 +29,14 @@ public abstract class Task {
      * @param isDone   initial completion state ({@code true} if done)
      */
     public Task(String taskName, boolean isDone) {
+        assert taskName != null : "Task name cannot be null";
+        assert !taskName.trim().isEmpty() : "Task name cannot be empty";
         this.taskName = taskName;
         this.isDone = isDone;
     }
 
     public String getName() {
+        assert taskName != null : "Task name should never be null";
         return taskName;
     }
 
@@ -41,10 +46,12 @@ public abstract class Task {
      * @return {@code true} if the state changed from not done to done; {@code false} if it was already done
      */
     public boolean markDone() {
+        boolean oldState = isDone;
         if (isDone) {
             return false;
         }
         isDone = true;
+        assert isDone != oldState : "Task state should have changed";
         return true;
     }
 
@@ -54,10 +61,12 @@ public abstract class Task {
      * @return {@code true} if the state changed from done to not done; {@code false} if it was already not done
      */
     public boolean markUndone() {
+        boolean oldState = isDone;
         if (!isDone) {
             return false;
         }
         isDone = false;
+        assert isDone != oldState : "Task state should have changed";
         return true;
     }
 
