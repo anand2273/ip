@@ -91,10 +91,12 @@ public class Storage {
     private Task parseTask(String storedTask) {
         String[] parts = storedTask.split(" \\| ");
         String type = parts[0].trim();
+
         boolean isDone = parts[1].trim().equals("1");
         System.out.println(parts[1].trim());
         System.out.println(parts[2]);
         String taskName = parts[2].trim();
+
         switch (type) {
             case "T":
                 return new TodoTask(taskName, isDone);
