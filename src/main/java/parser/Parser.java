@@ -25,6 +25,7 @@ import task.TaskList;
  */
 
 public final class Parser {
+
     /**
      * Parses a raw user input line into a concrete {@link command.Command}.
      * The first token is matched case-insensitively to a {@link command.CommandType}.
@@ -39,13 +40,11 @@ public final class Parser {
      *                                    is not in {@code YYYY-MM-DD} format.
      */
     public static Command parse(String line) throws AlfredException {
-        assert line != null : "Input line cannot be null";
         if (line == null || line.trim().isEmpty()) {
             throw new AlfredException("Empty input, Master Bruce.");
         }
 
         String[] parts = line.trim().split("\\s+", 2);
-        assert parts.length > 0 : "Split should always produce at least one part";
         String word = parts[0].toUpperCase();
         String args = parts.length > 1 ? parts[1].trim() : "";
 
@@ -100,40 +99,27 @@ public final class Parser {
 
     // --- helpers ---
     private static int parseIndex(String arg) throws AlfredException {
-        assert arg != null : "Index argument cannot be null";
         if (arg.isEmpty()) throw new AlfredException("Please specify a task number, e.g., \"mark 1\".");
         try {
             int idx1 = Integer.parseInt(arg.trim());
             if (idx1 <= 0) throw new NumberFormatException();
-            int idx0 = idx1 - 1; // convert to 0-based
-            assert idx0 >= 0 : "Index must be non-negative after conversion";
-            return idx0;
+            return idx1 - 1; // convert to 0-based
         } catch (NumberFormatException e) {
             throw new AlfredException("Task number must be a positive integer.");
         }
     }
 
     private static String[] splitOnce(String src, String delimiter) throws AlfredException {
-        assert src != null : "Source string cannot be null";
-        assert delimiter != null : "Delimiter cannot be null";
-        assert !delimiter.isEmpty() : "Delimiter cannot be empty";
-
         String[] p = src.split("\\s*" + java.util.regex.Pattern.quote(delimiter) + "\\s*", 2);
         if (p.length < 2) {
             throw new AlfredException("Missing " + delimiter + ". Example: " + delimiter + " YYYY-MM-DD");
         }
-        assert p.length == 2 : "Split with limit 2 should produce exactly 2 parts";
         return p;
     }
 
     private static LocalDate parseDate(String raw, String usage) throws AlfredException {
-        assert raw != null : "Date string cannot be null";
-        assert usage != null : "Usage message cannot be null";
-
         try {
-            LocalDate date = LocalDate.parse(raw.trim());
-            assert date != null : "Parsed date should not be null";
-            return date;
+            return LocalDate.parse(raw.trim());
         } catch (DateTimeParseException e) {
             throw new AlfredException(usage + " (date must be YYYY-MM-DD)");
         }
