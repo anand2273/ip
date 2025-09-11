@@ -55,7 +55,7 @@ public class TaskList {
         tasks.remove(idx);
     }
 
-    public void sort() {
+    public void sortTasks() {
         tasks.sort((t1, t2) -> {
             LocalDate d1 = t1.getDate();
             LocalDate d2 = t2.getDate();
