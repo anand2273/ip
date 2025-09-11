@@ -1,5 +1,7 @@
 package task;
 
+import java.time.LocalDate;
+
 public class TodoTask extends Task {
 
     public TodoTask(String taskName) {
@@ -13,6 +15,11 @@ public class TodoTask extends Task {
     @Override
     public String toString() {
         return "[T]" + super.toString();
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return LocalDate.MIN;
     }
 
     @Override

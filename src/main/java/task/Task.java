@@ -1,4 +1,5 @@
 package task;
+import java.time.LocalDate;
 
 /**
  * @author Anand Bala
@@ -76,6 +77,8 @@ public abstract class Task {
      * @return storage representation of this task (e.g., {@code "D | 1 | name | 2025-12-31"})
      */
     public abstract String toStorage();
+
+    public abstract LocalDate getDate();
 
     /**
      * Returns a concise human-readable representation of this task with a status checkbox.

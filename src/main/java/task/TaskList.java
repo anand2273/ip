@@ -1,4 +1,5 @@
 package task;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
@@ -53,6 +54,15 @@ public class TaskList {
     public void delete(int idx) {
         tasks.remove(idx);
     }
+
+    public void sort() {
+        tasks.sort((t1, t2) -> {
+            LocalDate d1 = t1.getDate();
+            LocalDate d2 = t2.getDate();
+            return d1.compareTo(d2);
+        });
+    }
+
 
     /**
      * Returns a human-friendly multi-line summary of tasks,
