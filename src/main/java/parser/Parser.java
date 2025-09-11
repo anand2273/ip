@@ -14,6 +14,7 @@ import command.ExitCommand;
 import command.FindCommand;
 import command.ListCommand;
 import command.MarkCommand;
+import command.SortCommand;
 import exceptions.AlfredException;
 
 import task.TaskList;
@@ -91,7 +92,8 @@ public final class Parser {
             return new FindCommand(args);
         case DELETE:
             return new DeleteCommand(parseIndex(args));
-
+        case SORT:
+            return new SortCommand();
         default:
             throw new AlfredException("Good Evening, Master Bruce. Please use the commands to continue.");
         }
