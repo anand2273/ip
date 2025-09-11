@@ -60,4 +60,21 @@ public class DeadlineTaskTest {
         assertEquals("D | 1 | xyz | 2025-11-05", done.toStorage());
         assertEquals("[D][X] xyz (by: Nov 5 2025)", done.toString());
     }
+
+    @Test
+    void getDate_returnsDeadlineDate() {
+        LocalDate date = LocalDate.of(2025, 11, 5);
+        DeadlineTask task = new DeadlineTask("test task", date);
+        assertEquals(date, task.getDate(), "getDate should return the deadline date");
+    }
+
+    @Test
+    void getDate_preservesDateAfterStateChange() {
+        LocalDate date = LocalDate.of(2025, 11, 5);
+        DeadlineTask task = new DeadlineTask("test task", date);
+        task.markDone();
+        assertEquals(date, task.getDate(), "Date should remain unchanged after marking done");
+        task.markUndone();
+        assertEquals(date, task.getDate(), "Date should remain unchanged after marking undone");
+    }
 }

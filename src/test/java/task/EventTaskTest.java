@@ -84,4 +84,25 @@ public class EventTaskTest {
         assertEquals("E | 1 | Open House | 2025-11-05 | 2025-11-06", done.toStorage());
         assertEquals("[E][X] Open House (from: Nov 5 2025 to: Nov 6 2025)", done.toString());
     }
+
+    @Test
+    void getDate_returnsFromDate() {
+        LocalDate fromDate = LocalDate.of(2025, 11, 5);
+        LocalDate toDate = LocalDate.of(2025, 11, 10);
+        EventTask task = new EventTask("test event", fromDate, toDate);
+        assertEquals(fromDate, task.getDate(), "getDate should return the from date");
+    }
+
+    @Test
+    void getDate_preservesDateAfterStateChange() {
+        LocalDate fromDate = LocalDate.of(2025, 11, 5);
+        LocalDate toDate = LocalDate.of(2025, 11, 10);
+        EventTask task = new EventTask("test event", fromDate, toDate);
+
+        task.markDone();
+        assertEquals(fromDate, task.getDate(), "From date should remain unchanged after marking done");
+
+        task.markUndone();
+        assertEquals(fromDate, task.getDate(), "From date should remain unchanged after marking undone");
+    }
 }
