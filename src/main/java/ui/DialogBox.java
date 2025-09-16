@@ -1,6 +1,8 @@
 package ui;
+
 import java.io.IOException;
 import java.util.Collections;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -36,9 +38,6 @@ public class DialogBox extends HBox {
         displayPicture.setImage(img);
     }
 
-    /**
-     * Flips the dialog box such that the ImageView is on the left and text on the right.
-     */
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
@@ -47,11 +46,14 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.setAlignment(Pos.TOP_RIGHT);
+        return db;
     }
 
     public static DialogBox getAlfredDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        db.setAlignment(Pos.TOP_LEFT);
         db.flip();
         return db;
     }
