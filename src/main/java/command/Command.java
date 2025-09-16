@@ -8,6 +8,9 @@ import ui.Ui;
  * This class outlines the various commands that are actually executed within the program.
  * Each subclass of the command class refers to a specific type of command, and implements
  * the execute method accordingly.
+ *
+ * Note: GitHub Copilot was used to assist in implementing the command pattern structure
+ * and suggesting the execute method signature for consistent command execution.
  */
 public abstract class Command {
     /**

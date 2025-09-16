@@ -6,6 +6,12 @@ import task.DeadlineTask;
 import task.TaskList;
 import ui.Ui;
 
+/**
+ * Command implementation for adding deadline tasks.
+ *
+ * Note: GitHub Copilot assisted in implementing date handling logic
+ * and suggesting parameter validation patterns.
+ */
 public class AddDeadlineCommand extends Command {
     private final String description;
     private final LocalDate by;

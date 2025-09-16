@@ -6,6 +6,12 @@ import task.EventTask;
 import task.TaskList;
 import ui.Ui;
 
+/**
+ * Command implementation for adding event tasks.
+ *
+ * Note: GitHub Copilot helped generate date validation logic and
+ * suggested consistent error handling patterns across commands.
+ */
 public class AddEventCommand extends Command {
     private final String description;
     private final LocalDate from;
