@@ -1,9 +1,8 @@
 package command;
-
 import task.Task;
 import task.TaskList;
-
 import ui.Ui;
+import exceptions.AlfredException;
 
 public class DeleteCommand extends Command {
     private final int pos;
@@ -13,11 +12,19 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui) {
-        assert tasks != null;
-        assert ui != null;
-        assert pos >= 0;
-        assert pos < tasks.size();
+    public String execute(TaskList tasks, Ui ui) throws AlfredException {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "UI cannot be null";
+        assert pos >= 0 : "Position must be non-negative";
+
+        if (tasks.size() == 0) {
+            throw new AlfredException("The task list is empty, Master Bruce.");
+        }
+
+        if (pos >= tasks.size()) {
+            throw new AlfredException("Task " + (pos + 1) + " does not exist. There are only "
+                    + tasks.size() + " tasks in the list.");
+        }
 
         Task deleteTask = tasks.get(pos);
         tasks.delete(pos);

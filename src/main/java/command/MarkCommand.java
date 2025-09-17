@@ -2,7 +2,7 @@ package command;
 
 import task.Task;
 import task.TaskList;
-
+import exceptions.AlfredException;
 import ui.Ui;
 
 public class MarkCommand extends Command {
@@ -15,7 +15,21 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) throws AlfredException {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "UI cannot be null";
+        assert pos >= 0 : "Position must be non-negative";
+        assert cmd != null && (cmd.equals("mark") || cmd.equals("unmark")) : "Invalid command type";
+
+        if (tasks.size() == 0) {
+            throw new AlfredException("The task list is empty, Master Bruce.");
+        }
+
+        if (pos >= tasks.size()) {
+            throw new AlfredException("Task " + (pos + 1) + " does not exist. There are only "
+                    + tasks.size() + " tasks in the list.");
+        }
+
         Task task = tasks.get(pos);
         String message;
         if (cmd.equals("mark")) {

@@ -1,6 +1,8 @@
 package command;
 
+import alfred.Alfred;
 import task.TaskList;
+import exceptions.AlfredException;
 import ui.Ui;
 
 /**
@@ -20,7 +22,7 @@ public abstract class Command {
      * @param ui    the UI used to present results or messages
      * @return String message describing the execution result
      */
-    public abstract String execute(TaskList tasks, Ui ui);
+    public abstract String execute(TaskList tasks, Ui ui) throws AlfredException;
 
     /**
      * Indicates whether executing this command should terminate the application loop.
