@@ -1,8 +1,5 @@
 # Alfred User Guide
 
-// Product screenshot goes here
-![Screenshot 2025-09-17 at 4.55.27 PM.png](../../../../../var/folders/sy/23yl6_6j4dn5s68thzn7_tzc0000gn/T/TemporaryItems/NSIRD_screencaptureui_SyJeB0/Screenshot%202025-09-17%20at%204.55.27%E2%80%AFPM.png)
-
 > "Why do we fall, sir? So that we may learn to pick ourselves up." - Alfred Pennyworth, Batman Begins
 
 **Alfred is will be your most reliable companion. As dependable as he is for Bruce Wayne himself.**
@@ -113,7 +110,7 @@ This will sort your tasks by date and display the following message:
 Your tasks have been sorted by date.
 ```
 
-# Finding tasks by keyword
+## Finding tasks by keyword
 
 Find tasks containing a specific keyword using the `find` command followed by the keyword.
 
