@@ -66,4 +66,12 @@ public class Alfred {
             return "Unexpected error: " + e.getMessage();
         }
     }
+
+    /**
+     * Saves the current tasks to storage.
+     * @throws IOException if there's an error saving to the file
+     */
+    public void saveToStorage() throws IOException {
+        storage.save(tasks);
+    }
 }

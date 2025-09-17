@@ -25,6 +25,6 @@ public class AddDeadlineCommand extends Command {
     public String execute(TaskList tasks, Ui ui) {
         DeadlineTask deadlineTask = new DeadlineTask(description, by);
         tasks.add(deadlineTask);
-        return "This task has been successfully added:\n";
+        return "This task has been successfully added:\n" + deadlineTask.toString();
     }
 }
